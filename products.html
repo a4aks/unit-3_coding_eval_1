@@ -54,20 +54,32 @@
             })
         }
 
-        function createPost(){
+        function createPost(data){
             const config = {
-                method: "POST"
+                method: "POST",
+                headers: {
+                    'Content-Type': `application/json`
+                },
+                body: JSON.stringify(data)
             }
             return fetch("http://localhost:3001/products/posts",config)
+            .then(function(response){
+                return response.json()
+            })
         }
 
         function handleSubmit(){
             event.preventDefault();
-            let id = document.getElementById("num")
-            let name = document.getElementById("pname");
-            let price = document.getElementById("pprice")
-            let curr = document.getElementById("currency")
-            let quan = document.getElementById("quantity");
+            const form = document.querySelector("form");
+            const formData = new FormData(form);
+
+            const title = formData.get("num")
+            const name = formData.get("pname");
+            const price = formData.get("pname")
+            const curr = formData.get("curreny");
+            const quan = formData.get("quantity");
+
+            console.log(title, name)
         }
     </script>
 </body>
