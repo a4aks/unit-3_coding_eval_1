@@ -5,8 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+      body{
+          text-align: center;
+      }
+      div{
+          margin-bottom: 10px;
+          margin-left:20px;
+      }
+    </style>
 </head>
 <body>
+    <h1>LIST OF PRODUCTS</h1>
     <form>
         <div>
             <label>ID:</label>
@@ -18,7 +28,7 @@
         </div>
         <div>
             <label>Price</label>
-            <input type="num" id = "pprice"/>
+            <input type="number" id = "pprice"/>
         </div>
         <div>
             <label>Currency</label>
@@ -32,6 +42,33 @@
             <input  type = "submit" value = "Add Product"/>
         </div>
     </form>
+    <script type="text/javascript">
+        
+        let frmEle = document.querySelector("form")
+        frmEle.addEventListener("load",handleSubmit())
 
+        function getPosts(){
+            return fetch("http://localhost:3001/products/posts")
+            .then (function(response){
+                return response.json()
+            })
+        }
+
+        function createPost(){
+            const config = {
+                method: "POST"
+            }
+            return fetch("http://localhost:3001/products/posts",config)
+        }
+
+        function handleSubmit(){
+            event.preventDefault();
+            let id = document.getElementById("num")
+            let name = document.getElementById("pname");
+            let price = document.getElementById("pprice")
+            let curr = document.getElementById("currency")
+            let quan = document.getElementById("quantity");
+        }
+    </script>
 </body>
 </html>
